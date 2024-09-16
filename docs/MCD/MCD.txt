@@ -1,0 +1,7 @@
+AVOIR, 1N Pokemon, 0N Type
+Pokemon: code_pokemon, nom, vie, attaque, défense, attaque_spéciale, défense_spéciale, vitesse
+APPARTENIR, 0N Pokemon, 0N Equipe
+
+Type: code_type, nom, couleur
+:
+Equipe: code_équipe, nom, description

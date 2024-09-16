@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "db:create:sequelize": "node src/database/migrations.js",
+    "db:create:sql": "psql -U opokedex < data/create_tables.sql",
+    "db:seed": "psql -U opokedex < data/seeding_tables.sql",
+    "db:reset": "npm run db:create:sql && npm run db:seed"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +23,7 @@
   },
   "devDependencies": {
     "eslint": "^9.6.0",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3"
   }
 }
