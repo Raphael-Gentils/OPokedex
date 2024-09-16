@@ -19,5 +19,5 @@ export function catchErrors(fn) {
 export function errorHandler(err, req, res, next) {
 	const statusCode = err.statusCode || 500;
 
-	res.status(statusCode).render(statusCode.toString());
+	res.status(statusCode).json(statusCode.toString());
 }
