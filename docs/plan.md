@@ -9,8 +9,9 @@
 - [ ] <ins>BDD</ins>
   - [x] Mettre en place la BDD
   - [x] MCD / MLD
-  - [ ] Connecter Sequelize
-  - [ ] Créer les models et associations.js
+  - [x] Connecter Sequelize
+  - [x] Créer les models et associations.js
+  - [x] Créer les tables avec sequelize
   
 - [ ] <ins>Serveur (index.js)</ins>
   - [ ] import dotenv, express, cors

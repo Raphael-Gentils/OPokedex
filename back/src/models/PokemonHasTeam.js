@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../database/connection.js';
 
-class PokemonHasType extends Model {}
+class PokemonHasTeam extends Model {}
 
-PokemonHasType.init(
+PokemonHasTeam.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -14,22 +14,22 @@ PokemonHasType.init(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
-		type_id: {
+		team_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 	},
 	{
 		sequelize,
-		tableName: 'pokemon_type',
+		tableName: 'team_pokemon',
 		// l'association d'un pokemon avec un type sera unique dans la table
 		indexes: [
 			{
 				unique: true,
-				fields: ['pokemon_id', 'type_id'],
+				fields: ['pokemon_id', 'team_id'],
 			},
 		],
 	}
 );
 
-export { PokemonHasType };
+export { PokemonHasTeam };
