@@ -11,6 +11,16 @@ const pokemonController = {
 
 		res.json(pokemons);
 	},
+
+	async show(req, res) {
+		const { id } = req.params;
+
+		const pokemon = await Pokemon.findByPk(id, {
+			include: ['types', 'teams'],
+		});
+
+		res.json(pokemon);
+	},
 };
 
 export { pokemonController };

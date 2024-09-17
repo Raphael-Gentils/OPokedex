@@ -1,33 +1,34 @@
 -- SCRIPT SQL donné à titre indicatif. Les scripts JS ont le même effet --
-
 BEGIN;
-
-INSERT INTO "type"
-  ("name", "color")
-VALUES
-  ( 'Acier', 'aaaabb'),
-  ( 'Combat', 'bb5544'),
-  ( 'Dragon', '7766ee'),
-  ( 'Eau', '3399ff'),
-  ( 'Électrik', 'ffbb33'),
-  ( 'Feu', 'ff4422'),
-  ( 'Glace', '77ddff'),
-  ( 'Insecte', 'aabb22'),
-  ( 'Normal', 'bbaabb'),
-  ( 'Plante', '77cc55'),
-  ( 'Poison', 'aa5599'),
-  ( 'Psy', 'ff5599'),
-  ( 'Roche', 'bbaa66'),
-  ( 'Sol', 'ddbb55'),
-  ( 'Spectre', '6666bb'),
-  ( 'Ténèbres', '665544'),
-  ( 'Vol', '6699ff')
-;
-
-INSERT INTO "pokemon" 
-  ("id", "name", "hp", "atk", "def", "atk_spe", "def_spe", "speed")
-VALUES
-  (1, 'Bulbizarre', 45, 49, 49, 65, 65, 45),
+INSERT INTO "type" ("name", "color")
+VALUES ('Acier', 'aaaabb'),
+  ('Combat', 'bb5544'),
+  ('Dragon', '7766ee'),
+  ('Eau', '3399ff'),
+  ('Électrik', 'ffbb33'),
+  ('Feu', 'ff4422'),
+  ('Glace', '77ddff'),
+  ('Insecte', 'aabb22'),
+  ('Normal', 'bbaabb'),
+  ('Plante', '77cc55'),
+  ('Poison', 'aa5599'),
+  ('Psy', 'ff5599'),
+  ('Roche', 'bbaa66'),
+  ('Sol', 'ddbb55'),
+  ('Spectre', '6666bb'),
+  ('Ténèbres', '665544'),
+  ('Vol', '6699ff');
+INSERT INTO "pokemon" (
+    "id",
+    "name",
+    "hp",
+    "atk",
+    "def",
+    "atk_spe",
+    "def_spe",
+    "speed"
+  )
+VALUES (1, 'Bulbizarre', 45, 49, 49, 65, 65, 45),
   (2, 'Herbizarre', 60, 62, 63, 80, 80, 60),
   (3, 'Florizarre', 80, 82, 83, 100, 100, 80),
   (4, 'Salameche', 39, 52, 43, 60, 50, 65),
@@ -177,17 +178,17 @@ VALUES
   (148, 'Draco', 61, 84, 65, 70, 70, 70),
   (149, 'Dracolosse', 91, 134, 95, 100, 100, 80),
   (150, 'Mewtwo', 106, 110, 90, 154, 90, 130),
-  (151, 'Mew', 100, 100, 100, 100, 100, 100)
-;
-
+  (151, 'Mew', 100, 100, 100, 100, 100, 100);
 -- Reset the ID sequence because we manually inserted the ID in the command before, so the sequence needs an update.
-SELECT setval('pokemon_id_seq', (SELECT MAX(id) from "pokemon"));
-
-
-INSERT INTO "pokemon_type" 
-  ("pokemon_id", "type_id")
-VALUES
-  (1, 10),
+SELECT setval(
+    'pokemon_id_seq',
+    (
+      SELECT MAX(id)
+      from "pokemon"
+    )
+  );
+INSERT INTO "pokemon_type" ("pokemon_id", "type_id")
+VALUES (1, 10),
   (1, 11),
   (2, 10),
   (2, 11),
@@ -401,7 +402,34 @@ VALUES
   (149, 3),
   (149, 17),
   (150, 12),
-  (151, 12)
-;
-
+  (151, 12);
+INSERT INTO "team" ("name", "description")
+VALUES (
+    'Force rouge',
+    'Pas la bonne franchise, mais ça passe quand même'
+  ),
+  (
+    'Les gentils',
+    'C''est une équipe de gentils avec des gentils pokémons'
+  ),
+  ('Les méchants', 'C''est eux les méchants');
+INSERT INTO "team_pokemon" ("pokemon_id", "team_id")
+VALUES (17, 2),
+  (18, 2),
+  (18, 3),
+  (22, 1),
+  (23, 2),
+  (25, 3),
+  (27, 1),
+  (78, 1),
+  (99, 2),
+  (112, 3),
+  (129, 2),
+  (130, 2),
+  (137, 3),
+  (140, 1),
+  (141, 3),
+  (145, 1),
+  (146, 1),
+  (150, 3);
 COMMIT;

@@ -1,27 +1,27 @@
-import { Type } from '../models/associations.js';
+import { Team } from '../models/associations.js';
 // import sanitize from 'sanitize-html';
 // import Joi from 'joi';
 
-const typeController = {
+const teamController = {
 	async index(req, res) {
-		const types = await Type.findAll({
+		const teams = await Team.findAll({
 			include: 'pokemons',
 			order: [['id', 'ASC']],
 		});
 
-		res.json(types);
+		res.json(teams);
 	},
 
 	async show(req, res) {
 		const { id } = req.params;
 
-		const type = await Type.findByPk(id, {
+		const team = await Team.findByPk(id, {
 			include: 'pokemons',
 			order: [['id', 'ASC']],
 		});
 
-		res.json(type);
+		res.json(team);
 	},
 };
 
-export { typeController };
+export { teamController };
