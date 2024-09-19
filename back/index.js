@@ -17,13 +17,21 @@ app.use(
 
 import { router } from './src/routers/router.js';
 import { notFound, errorHandler } from './src/middlewares/errorHandlers.js';
+import { loadUserToLocals } from './src/middlewares/loadUserToLocals.js';
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Charger les données de la sessions sur `req.session` et `res.locals`
 app.use(
-	session({ saveUninitialized: true, resave: true, secret: process.env.SECRET })
+	session({
+		saveUninitialized: true,
+		resave: true,
+		secret: 'Un secret pour signer les id de sessions',
+	})
 );
+app.use(loadUserToLocals);
+
 app.use('/api', router);
 
 app.use(notFound);
