@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
+import session from 'express-session';
 const app = express();
 
 app.use(
@@ -18,8 +19,12 @@ import { router } from './src/routers/router.js';
 import { notFound, errorHandler } from './src/middlewares/errorHandlers.js';
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.use(router);
+app.use(
+	session({ saveUninitialized: true, resave: true, secret: process.env.SECRET })
+);
+app.use('/api', router);
 
 app.use(notFound);
 app.use(errorHandler);

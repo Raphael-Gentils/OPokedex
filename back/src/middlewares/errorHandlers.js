@@ -1,5 +1,5 @@
 export function notFound(req, res, next) {
-	const err = new Error("la ressources demandée n'existe pas");
+	const err = new Error("La ressource demandée n'existe pas.");
 	err.statusCode = 404;
 
 	next(err);
@@ -19,5 +19,7 @@ export function catchErrors(fn) {
 export function errorHandler(err, req, res, next) {
 	const statusCode = err.statusCode || 500;
 
-	res.status(statusCode).json(statusCode.toString());
+	res
+		.status(statusCode)
+		.json(`Erreur ${statusCode.toString()} - ${err.message}`);
 }

@@ -1,33 +1,293 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<!-- Meta -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Title -->
+		<title>Pokedex</title>
 
-    <!-- Title -->
-    <title>Pokedex</title>
+		<!-- Favicon -->
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='24px' height='24px' stroke-width='1.5' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' color='%23000000'%3E%3Cpath d='M3 3.6V20.4C3 20.7314 3.26863 21 3.6 21H20.4C20.7314 21 21 20.7314 21 20.4V3.6C21 3.26863 20.7314 3 20.4 3H3.6C3.26863 3 3 3.26863 3 3.6Z' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M6 6L6 16' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M10 6V9' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M14 6V13' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M18 6V11' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3C/svg%3E"
+		/>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='24px' height='24px' stroke-width='1.5' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' color='%23000000'%3E%3Cpath d='M3 3.6V20.4C3 20.7314 3.26863 21 3.6 21H20.4C20.7314 21 21 20.7314 21 20.4V3.6C21 3.26863 20.7314 3 20.4 3H3.6C3.26863 3 3 3.26863 3 3.6Z' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M6 6L6 16' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M10 6V9' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M14 6V13' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M18 6V11' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3C/svg%3E">
+		<!-- Bulma -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+		/>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+		<!-- Font Awesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+		/>
 
-    <!-- Custom CSS-->
-    <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
+		<!-- Custom CSS-->
+		<link rel="stylesheet" href="./assets/css/style.css" />
 
-    <!-- Custom JS -->
-    <!-- <script type="module" src="./assets/js/index.js"></script> defer est sous entendu avec un type=module -->
-</head>
+		<!-- Custom JS - defer est sous entendu avec un type=module -->
+		<script type="module" src="./assets/js/index.js"></script>
+	</head>
 
-<body>
-    <header>
-        <h1>Pokedex</h1>
-    </header>
-    
+	<body>
+		<header class="box has-background-warning">
+			<h1 class="title has-text-centered">Pokedex</h1>
+			<nav
+				class="navbar is-flex is-justify-content-space-evenly"
+				id="navbar_main"
+				role="navigation"
+				aria-label="main navigation"
+			>
+				<a class="navbar-item" id="nav-item-home">Home</a>
+				<a class="navbar-item" id="nav-item-type">Types</a>
+				<a class="navbar-item" id="nav-item-team">Teams</a>
+			</nav>
+		</header>
 
-</body>
+		<main
+			id="app"
+			class="container is-flex is-flex-direction-column is-align-items-center is-flex-wrap-wrap is-justify-content-space-evenly"
+		>
+			<h2
+				class="title has-text-centered is-align-self-center"
+				id="main-title"
+			></h2>
+			<section
+				class="section is-flex is-flex-wrap-wrap is-align-items-center is-justify-content-space-evenly"
+				id="first-app-section"
+			></section>
+			<section
+				class="section pt-8 is-flex is-flex-wrap-wrap is-align-items-center is-justify-content-space-evenly"
+				id="second-app-section"
+			></section>
+		</main>
 
+		<!-- MODAL POKEMON DETAIL-->
+		<div class="modal" id="pkm_detail">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<h3 class="modal-card-title pkm_name"></h3>
+					<i class="fa fa-window-close close"></i>
+				</header>
+				<section
+					class="modal-card-body is-flex is-align-content-center is-align-items-center"
+				>
+					<!-- Content ... -->
+					<div class="mr-4">
+						<img src="" alt="" class="pkm_img_modal" />
+						<div class="icon-text">
+							<span class="icon">
+								<i class="far fa-heart voteBtn"></i>
+							</span>
+							<span class="vote-text">Voter pour ce pokémon</span>
+						</div>
+						<div class="mt-2 is-flex is-justify-content-space-start">
+							<div class="has-text-weight-semibold">Votes :</div>
+							<div class="pkm_votes ml-1"></div>
+						</div>
+					</div>
+
+					<div class="modal-card-content pkm_stats_modal">
+						<p
+							class="modal_team_types is-flex is-justify-content-space-evenly"
+						></p>
+
+						<h4 class="my-3">Satistiques</h4>
+
+						<div>
+							<div class="is-flex is-justify-content-space-start">
+								<div class="">PV:</div>
+								<div class="pokemon-hp ml-1"></div>
+							</div>
+							<progress
+								class="progress is-danger"
+								slot="hp"
+								value=""
+								max="180"
+							></progress>
+						</div>
+
+						<div class="row">
+							<div class="is-flex is-justify-content-space-start">
+								<div class="">Attaque:</div>
+								<div class="pokemon-atk ml-1"></div>
+							</div>
+							<progress
+								class="progress is-danger"
+								slot="atk"
+								value=""
+								max="180"
+							></progress>
+						</div>
+
+						<div class="row">
+							<div class="is-flex is-justify-content-space-start">
+								<div class="">Défense:</div>
+								<div class="pokemon-def ml-1"></div>
+							</div>
+							<progress
+								class="progress is-danger"
+								slot="def"
+								value=""
+								max="180"
+							></progress>
+						</div>
+
+						<div class="row">
+							<div class="is-flex is-justify-content-space-start">
+								<div class="">Attaque Spé:</div>
+								<div class="pokemon-atk_spe ml-1"></div>
+							</div>
+							<progress
+								class="progress is-danger"
+								slot="atk_spe"
+								value=""
+								max="180"
+							></progress>
+						</div>
+
+						<div class="row">
+							<div class="is-flex is-justify-content-space-start">
+								<div class="">Défense Spé:</div>
+								<div class="pokemon-def_spe ml-1"></div>
+							</div>
+							<progress
+								class="progress is-danger"
+								slot="def_spe"
+								value=""
+								max="180"
+							></progress>
+						</div>
+
+						<div class="row">
+							<div class="is-flex is-justify-content-space-start">
+								<div class="">Vitesse:</div>
+								<div class="pokemon-speed ml-1"></div>
+							</div>
+							<progress
+								class="progress is-danger"
+								slot="speed"
+								value=""
+								max="180"
+							></progress>
+						</div>
+					</div>
+				</section>
+				<footer class="modal-card-foot">
+					<div class="buttons">
+						<button class="button is-info close">Retour</button>
+					</div>
+				</footer>
+			</div>
+		</div>
+		<!-- END MODAL POKEMON DETAIL-->
+
+		<!-- MODAL TEAM DETAIL -->
+		<div class="modal" id="team_modal">
+			<div class="modal-background"></div>
+			<div class="modal-content">
+				<header class="modal-card-head">
+					<h2 class="modal-card-title team-name title"></h2>
+
+					<i class="fa fa-window-close close"></i>
+				</header>
+				<div class="modal-card-body">
+					<p class="team-description"></p>
+					<table class="table has-text-centered">
+						<thead>
+							<tr>
+								<th><abbr title="numero">N°</abbr></th>
+								<th><abbr title="name">Name</abbr></th>
+								<th><abbr title="hp">PV</abbr></th>
+								<th><abbr title="atk">Atk</abbr></th>
+								<th><abbr title="def">Def</abbr></th>
+								<th><abbr title="atk_spe">Atk Spe</abbr></th>
+								<th><abbr title="def_spe">Def Spe</abbr></th>
+								<th><abbr title="speed">Vit</abbr></th>
+								<th><abbr title="types">Types</abbr></th>
+								<th><abbr title="options">Options</abbr></th>
+							</tr>
+						</thead>
+						<tbody id="tbody_team"></tbody>
+					</table>
+				</div>
+				<footer class="modal-card-foot">
+					<div class="buttons">
+						<button class="button is-info close">Retour</button>
+					</div>
+				</footer>
+			</div>
+		</div>
+		<!-- END MODAL TEAM DETAIL -->
+
+		<template id="template-row-table">
+			<tr>
+				<td slot="id"></td>
+				<td slot="name"></td>
+				<td slot="hp"></td>
+				<td slot="atk"></td>
+				<td slot="def"></td>
+				<td slot="atk_spe"></td>
+				<td slot="def_spe"></td>
+				<td slot="speed"></td>
+				<td slot="types"></td>
+				<td slot="options"></td>
+			</tr>
+		</template>
+
+		<!-- POKEMON LIST ITEM TEMPLATE -->
+		<template id="pokemon-list-item-template">
+			<div class="card mb-6 has-text-centered pt-4">
+				<a>
+					<div class="card-image">
+						<img class="pkm_img" src="" />
+					</div>
+					<div class="card-content">
+						<p></p>
+					</div>
+				</a>
+			</div>
+		</template>
+		<!-- END POKEMON LIST ITEM TEMPLATE -->
+
+		<!-- TYPES LIST ITEM TEMPLATE -->
+		<template id="types-list-item-template">
+			<button class="button m-3 is-flex-grow-2"></button>
+		</template>
+		<!-- END POKEMON LIST ITEM TEMPLATE -->
+
+		<!-- TEAM LIST ITEM TEMPLATE -->
+		<template id="team-list-item">
+			<section
+				class="container card p-2 m-6 has-text-centered is-flex-grow-1 is-flex is-flex-direction-column"
+			>
+				<div class="mb-1 p-2">
+					<div class="is-flex is-justify-content-center">
+						<h2 class="team-name title"></h2>
+						<span class="icon ml-1 has-text-info team-update-btn">
+							<i class="fas fa-pencil"></i>
+						</span>
+						<span class="icon ml-1 has-text-danger team-remove-btn">
+							<i class="fas fa-lg fa-xmark"></i>
+						</span>
+					</div>
+					<p class="team-description subtitle"></p>
+				</div>
+
+				<div class="imgContainer image is-flex is-justify-content-center mb-2">
+					<!-- Faire une boucle avec les images coté JS -->
+				</div>
+				<div class="container btnContainer">
+					<button class="button btnModalTeam">Administrer</button>
+				</div>
+			</section>
+		</template>
+		<!-- END TEAM LIST ITEM TEMPLATE -->
+	</body>
 </html>

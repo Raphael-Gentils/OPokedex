@@ -1,24 +1,33 @@
 import { Type } from '../models/associations.js';
-// import sanitize from 'sanitize-html';
-// import Joi from 'joi';
 
 const typeController = {
-	async index(req, res) {
+	async index(req, res, next) {
 		const types = await Type.findAll({
-			include: 'pokemons',
+			include: { association: 'pokemons', include: 'teams' },
 			order: [['id', 'ASC']],
 		});
+
+		if (!types) {
+			return next();
+		}
 
 		res.json(types);
 	},
 
-	async show(req, res) {
+	async show(req, res, next) {
 		const { id } = req.params;
 
 		const type = await Type.findByPk(id, {
-			include: 'pokemons',
-			order: [['id', 'ASC']],
+			include: { association: 'pokemons', include: 'teams' },
+			order: [
+				['id', 'ASC'],
+				['pokemons', 'id', 'ASC'],
+			],
 		});
+
+		if (!type) {
+			return next();
+		}
 
 		res.json(type);
 	},

@@ -1,0 +1,30 @@
+.pkm_img {
+	width: 50%;
+}
+
+.pkm_stats_modal {
+	width: 100%;
+}
+
+.box {
+	width: 100%;
+}
+
+#second-app-section {
+	gap: 1.5rem;
+}
+
+i:hover {
+	scale: 1.2;
+	cursor: pointer;
+}
+
+th {
+	text-align: center;
+}
+tbody {
+	scrollbar-width: none;
+}
+abbr {
+	text-decoration: none;
+}
