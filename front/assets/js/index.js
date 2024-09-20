@@ -38,6 +38,9 @@ const app = {
 			.querySelector('#nav-item-type')
 			.addEventListener('click', app.handleClickTypeMenu);
 		app.navbar
+			.querySelector('#nav-item-leaderboard')
+			.addEventListener('click', app.getPopularTenAndDisplay);
+		app.navbar
 			.querySelector('#nav-item-team')
 			.addEventListener('click', app.handleClickTeamMenu);
 	},
@@ -131,7 +134,8 @@ const app = {
 	},
 
 	// la méthode pour voter pour un pokémon
-	// quand on vote le coeur
+	// quand on clique sur le coeur
+	// TODO mettre en place l'authentification et vérifier que les pokémons non votés par user aient le coeur vide
 	async handleClickHeart(event) {
 		const { pkmId } = event.target.closest('#pkm_detail').dataset;
 
@@ -280,6 +284,17 @@ const app = {
 			document.getElementById('tbody_team').appendChild(clone);
 		});
 		teamModal.classList.add('is-active');
+	},
+
+	// la méthode pour récupérer et afficher les pokémons les plus populaires
+	async getPopularTenAndDisplay() {
+		const pokemons = await api.fetchMostPopularPkm();
+		app.cleanMain();
+		app.firstSection.remove();
+		app.mainTitle.textContent = 'Les 10 pokémons les plus populaires';
+		pokemons.forEach((pokemon) => {
+			app.displayPokemon(pokemon);
+		});
 	},
 };
 

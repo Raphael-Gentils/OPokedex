@@ -108,4 +108,17 @@ export const api = {
 			console.log(error);
 		}
 	},
+
+	async fetchMostPopularPkm() {
+		try {
+			const httpResponse = await fetch(`${apiBaseUrl}/pokemons/leaderboard`);
+
+			if (!httpResponse.ok) return null;
+
+			const popularTen = await httpResponse.json();
+			return popularTen;
+		} catch (error) {
+			console.log(error);
+		}
+	},
 };
