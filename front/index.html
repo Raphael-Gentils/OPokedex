@@ -193,6 +193,49 @@
 		</div>
 		<!-- END MODAL POKEMON DETAIL-->
 
+		<!-- MODAL NEW TEAM FORM -->
+		<div class="modal" id="newTeam_modal">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<form class="newTeam-form">
+					<header class="modal-card-head">
+						<p class="modal-card-title has-text-centered">
+							Créer une nouvelle équipe
+						</p>
+						<i class="fa fa-window-close close"></i>
+					</header>
+					<section class="modal-card-body">
+						<div class="field">
+							<label class="label" for="name">Nom de l'équipe</label>
+							<div class="control">
+								<input
+									class="input"
+									type="text"
+									name="name"
+									placeholder="Nom de l'équipe"
+								/>
+							</div>
+							<label class="label" for="description">Description</label>
+							<div class="control">
+								<textarea
+									class="textarea"
+									name="description"
+									placeholder="Une description de l'équipe"
+								></textarea>
+							</div>
+						</div>
+					</section>
+					<footer class="modal-card-foot">
+						<button class="button is-link submit" type="submit">
+							Enregistrer
+						</button>
+						<button class="button is-link is-light close">Annuler</button>
+					</footer>
+				</form>
+			</div>
+		</div>
+		<!-- END MODAL NEW TEAM FORM -->
+
 		<!-- MODAL TEAM DETAIL -->
 		<div class="modal" id="team_modal">
 			<div class="modal-background"></div>
@@ -269,20 +312,49 @@
 
 		<!-- TEAM LIST ITEM TEMPLATE -->
 		<template id="team-list-item">
-			<section
-				class="container card p-2 m-6 has-text-centered is-flex-grow-1 is-flex is-flex-direction-column"
+			<div
+				class="container card p-2 m-6 has-text-centered is-flex-grow-1 is-flex is-flex-direction-column team_card"
 			>
 				<div class="mb-1 p-2">
 					<div class="is-flex is-justify-content-center">
-						<h2 class="team-name title"></h2>
-						<span class="icon ml-1 has-text-info team-update-btn">
-							<i class="fas fa-pencil"></i>
-						</span>
+						<h2 class="title team-name"></h2>
+						<form class="is-hidden team-name-form">
+							<div class="field has-addons">
+								<div class="control">
+									<input
+										type="text"
+										class="input is-small"
+										name="name"
+										value=""
+										placeholder="Nom de la liste"
+									/>
+								</div>
+								<div class="control">
+									<button class="button is-small is-success">Valider</button>
+								</div>
+							</div>
+						</form>
 						<span class="icon ml-1 has-text-danger team-remove-btn">
 							<i class="fas fa-lg fa-xmark"></i>
 						</span>
 					</div>
 					<p class="team-description subtitle"></p>
+					<form class="is-hidden team-description-form">
+						<div class="field has-addons">
+							<div class="control">
+								<input
+									type="text"
+									class="input is-small"
+									name="description"
+									value=""
+									placeholder="Description"
+								/>
+							</div>
+							<div class="control">
+								<button class="button is-small is-success">Valider</button>
+							</div>
+						</div>
+					</form>
 				</div>
 
 				<div class="imgContainer image is-flex is-justify-content-center mb-2">
@@ -291,7 +363,7 @@
 				<div class="container btnContainer">
 					<button class="button btnModalTeam">Administrer</button>
 				</div>
-			</section>
+			</div>
 		</template>
 		<!-- END TEAM LIST ITEM TEMPLATE -->
 	</body>
