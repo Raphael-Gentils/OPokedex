@@ -3,6 +3,7 @@ import {
 	getAllTeams,
 	getOneTeam,
 	createNewTeam,
+	updateTeam,
 	destroyTeam,
 } from './teams.api.js';
 
@@ -92,6 +93,33 @@ async function trashTeam(event) {
 	}
 }
 
+function showEditTeamForm(event) {
+	event.target.nextElementSibling.classList.remove('is-hidden');
+	event.target.classList.add('is-hidden');
+}
+
+async function handleUpdateTeamForm(event) {
+	event.preventDefault();
+
+	const teamId = event.target.closest('.container').dataset.teamId;
+	const form = event.target;
+
+	const formData = Object.fromEntries(new FormData(form));
+
+	const updatedTeam = await updateTeam(teamId, formData);
+
+	if (formData.name) {
+		const newName = updatedTeam.name;
+		form.previousElementSibling.textContent = newName;
+	} else if (formData.description) {
+		const newDescription = updatedTeam.description;
+		form.previousElementSibling.textContent = newDescription;
+	}
+
+	form.classList.add('is-hidden');
+	form.previousElementSibling.classList.remove('is-hidden');
+}
+
 function displayTeam(team) {
 	// on récupère le template des teams et on le clone
 	const teamTemplate = document.getElementById('team-list-item');
@@ -100,17 +128,22 @@ function displayTeam(team) {
 	clone.querySelector('.container').dataset.teamId = team.id;
 
 	clone.querySelector('.team-name').textContent = team.name;
-	// TODO déclarer la méthode showEditTeamForm voir S13-OKANBAN-FRONT-RaphaelGentils lists.module.js
 	clone
 		.querySelector('.team-name')
 		.addEventListener('dblclick', showEditTeamForm);
-	// TODO déclarer la méthode handleUpdateTeamForm
 	clone
 		.querySelector('.team-name-form')
 		.addEventListener('submit', handleUpdateTeamForm);
+
 	clone.querySelector('.team-remove-btn').addEventListener('click', trashTeam);
 
 	clone.querySelector('.team-description').textContent = team.description;
+	clone
+		.querySelector('.team-description')
+		.addEventListener('dblclick', showEditTeamForm);
+	clone
+		.querySelector('.team-description-form')
+		.addEventListener('submit', handleUpdateTeamForm);
 
 	const imgContainer = clone.querySelector('.imgContainer');
 
@@ -134,7 +167,8 @@ function displayTeam(team) {
 
 // au click on affiche la modale de détails de l'équipe
 async function handleClickBtnModalTeam(event) {
-	const { teamId } = event.target.closest('.container').dataset;
+	const { teamId } = event.target.closest('.card').dataset;
+
 	const teamModal = document.getElementById('team_modal');
 
 	const team = await getOneTeam(teamId);

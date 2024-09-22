@@ -240,13 +240,26 @@
 		<div class="modal" id="team_modal">
 			<div class="modal-background"></div>
 			<div class="modal-content">
-				<header class="modal-card-head">
-					<h2 class="modal-card-title team-name title"></h2>
-
-					<i class="fa fa-window-close close"></i>
+				<header
+					class="modal-card-head is-flex is-justify-content-space-between"
+				>
+					<div>
+						<h2 class="modal-card-title team-name title"></h2>
+					</div>
+					<div>
+						<span class="icon-text is-clickable has-text-link add-pkm-btn">
+							<span class="icon">
+								<i class="fa-solid fa-plus"></i>
+							</span>
+							<span>Enrôler un pokémon</span>
+						</span>
+					</div>
+					<div>
+						<i class="fa fa-window-close close"></i>
+					</div>
 				</header>
 				<div class="modal-card-body">
-					<p class="team-description"></p>
+					<p class="mb-2 team-description"></p>
 					<table class="table has-text-centered">
 						<thead>
 							<tr>
@@ -285,7 +298,12 @@
 				<td slot="def_spe"></td>
 				<td slot="speed"></td>
 				<td slot="types"></td>
-				<td slot="options"></td>
+				<td>
+					<i
+						class="mr-1 fa-duotone fa-solid fa-arrow-right-arrow-left has-text-link exchange-pkm-btn"
+					></i>
+					<i class="ml-1 fa-solid fa-trash has-text-danger trash-pkm-btn"></i>
+				</td>
 			</tr>
 		</template>
 
@@ -317,7 +335,7 @@
 			>
 				<div class="mb-1 p-2">
 					<div class="is-flex is-justify-content-center">
-						<h2 class="title team-name"></h2>
+						<h2 class="title team-name is-unselectable is-clickable"></h2>
 						<form class="is-hidden team-name-form">
 							<div class="field has-addons">
 								<div class="control">
@@ -338,23 +356,27 @@
 							<i class="fas fa-lg fa-xmark"></i>
 						</span>
 					</div>
-					<p class="team-description subtitle"></p>
-					<form class="is-hidden team-description-form">
-						<div class="field has-addons">
-							<div class="control">
-								<input
-									type="text"
-									class="input is-small"
-									name="description"
-									value=""
-									placeholder="Description"
-								/>
+					<div class="is-flex is-justify-content-center">
+						<p
+							class="team-description subtitle is-unselectable is-clickable"
+						></p>
+						<form class="is-hidden team-description-form">
+							<div class="field has-addons">
+								<div class="control">
+									<input
+										type="text"
+										class="input is-small"
+										name="description"
+										value=""
+										placeholder="Description"
+									/>
+								</div>
+								<div class="control">
+									<button class="button is-small is-success">Valider</button>
+								</div>
 							</div>
-							<div class="control">
-								<button class="button is-small is-success">Valider</button>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 
 				<div class="imgContainer image is-flex is-justify-content-center mb-2">

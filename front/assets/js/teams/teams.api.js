@@ -44,6 +44,22 @@ async function createNewTeam(data) {
 	}
 }
 
+async function updateTeam(id, data) {
+	try {
+		const httpResponse = await fetch(`${url}/teams/${id}`, {
+			method: 'PATCH',
+			body: JSON.stringify(data),
+			headers: { 'Content-Type': 'application/json' },
+		});
+
+		if (!httpResponse.ok) return null;
+
+		return httpResponse.json();
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 async function destroyTeam(id) {
 	try {
 		const httpResponse = await fetch(`${url}/teams/${id}`, {
@@ -58,4 +74,28 @@ async function destroyTeam(id) {
 	}
 }
 
-export { getAllTeams, getOneTeam, createNewTeam, destroyTeam };
+async function removePkmFromTeam(teamId, pkmId) {
+	try {
+		const httpResponse = await fetch(
+			`${url}/teams/${teamId}/pokemons/${pkmId}`,
+			{
+				method: 'DELETE',
+			}
+		);
+
+		if (!httpResponse) return null;
+
+		return httpResponse.json();
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+export {
+	getAllTeams,
+	getOneTeam,
+	createNewTeam,
+	updateTeam,
+	destroyTeam,
+	removePkmFromTeam,
+};
